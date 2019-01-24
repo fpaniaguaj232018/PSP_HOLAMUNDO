@@ -4,9 +4,33 @@
         <servlet-name>ValidadorServlet</servlet-name>
         <servlet-class>com.fernandopaniagua.controller.ValidadorServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreadorUsuariosServlet</servlet-name>
+        <servlet-class>com.fernandopaniagua.controller.CreadorUsuariosServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConsultarUsuario</servlet-name>
+        <servlet-class>com.fernandopaniagua.controller.ConsultarUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreadorUsuariosWS</servlet-name>
+        <servlet-class>com.fernandopaniagua.controller.CreadorUsuariosWS</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ValidadorServlet</servlet-name>
         <url-pattern>/ValidadorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreadorUsuariosServlet</servlet-name>
+        <url-pattern>/CreadorUsuariosServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConsultarUsuario</servlet-name>
+        <url-pattern>/ConsultarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreadorUsuariosWS</servlet-name>
+        <url-pattern>/CreadorUsuariosWS</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

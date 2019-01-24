@@ -1,50 +1,60 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.fernandopaniagua.controller;
 
-import com.fernandopaniagua.exceptions.UserNotFoundException;
 import com.fernandopaniagua.model.User;
 import com.fernandopaniagua.model.UsersManager;
 import java.io.IOException;
-
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ValidadorServlet extends HttpServlet {
+/**
+ *
+ * @author fernando.paniagua
+ */
+public class CreadorUsuariosWS extends HttpServlet {
 
-    protected void processRequest(
-            HttpServletRequest request, 
-            HttpServletResponse response)
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /*
+        //Recogida de info
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        
+        String name = request.getParameter("name");
+        String surname = request.getParameter("surname");
+        String ip = request.getRemoteAddr();
+        //Llamada al business
+        User nuevoUser = new User(email,password,name,surname,ip);
         UsersManager um = new UsersManager();
         try {
-            boolean isOk = um.checkCredential(new User(email, password));
-            if (isOk){
-                //OK
-                RequestDispatcher dispatcher = 
-                        getServletContext().getRequestDispatcher("/userok.html");
-                dispatcher.forward(request, response);
-            } else {
-                //KO
-                RequestDispatcher dispatcher = 
-                        getServletContext().getRequestDispatcher("/userko.html");
-                dispatcher.forward(request, response);
-            }
-        } catch (UserNotFoundException ex) {
-            //KO
-            RequestDispatcher dispatcher = 
-                    getServletContext().getRequestDispatcher("/userko.html");
-            dispatcher.forward(request, response);
+            um.addUser(nuevoUser);
+            //CONVERTIR LA SALIDA JSON
+            
+            
+            
+            
+        } catch (ConnectionNotEnabledException ex) {
+            
+        } catch (DuplicateEmailException ex) {
+            
+        } catch (UnknownException ex) {
+            
         }
-        */
-        
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

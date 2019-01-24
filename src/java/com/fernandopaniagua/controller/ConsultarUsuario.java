@@ -1,50 +1,47 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.fernandopaniagua.controller;
 
-import com.fernandopaniagua.exceptions.UserNotFoundException;
-import com.fernandopaniagua.model.User;
-import com.fernandopaniagua.model.UsersManager;
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ValidadorServlet extends HttpServlet {
+/**
+ *
+ * @author fernando.paniagua
+ */
+public class ConsultarUsuario extends HttpServlet {
 
-    protected void processRequest(
-            HttpServletRequest request, 
-            HttpServletResponse response)
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /*
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        
-        UsersManager um = new UsersManager();
-        try {
-            boolean isOk = um.checkCredential(new User(email, password));
-            if (isOk){
-                //OK
-                RequestDispatcher dispatcher = 
-                        getServletContext().getRequestDispatcher("/userok.html");
-                dispatcher.forward(request, response);
-            } else {
-                //KO
-                RequestDispatcher dispatcher = 
-                        getServletContext().getRequestDispatcher("/userko.html");
-                dispatcher.forward(request, response);
-            }
-        } catch (UserNotFoundException ex) {
-            //KO
-            RequestDispatcher dispatcher = 
-                    getServletContext().getRequestDispatcher("/userko.html");
-            dispatcher.forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ConsultarUsuario</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ConsultarUsuario at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        */
-        
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

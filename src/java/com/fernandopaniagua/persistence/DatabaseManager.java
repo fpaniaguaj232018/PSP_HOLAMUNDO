@@ -72,7 +72,7 @@ public class DatabaseManager {
             if (ex.getErrorCode()==1062){
                 throw new DuplicateEmailException();
             } else {
-                throw new UnknownException();
+                throw new UnknownException(ex.getMessage() + ":" + ex.getErrorCode());
             }
         }
     }

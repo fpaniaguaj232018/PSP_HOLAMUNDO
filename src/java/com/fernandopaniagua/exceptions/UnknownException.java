@@ -10,5 +10,7 @@ package com.fernandopaniagua.exceptions;
  * @author fernando.paniagua
  */
 public class UnknownException extends Exception {
-    
+    public UnknownException(String mensaje){
+        super(mensaje);
+    }
 }
