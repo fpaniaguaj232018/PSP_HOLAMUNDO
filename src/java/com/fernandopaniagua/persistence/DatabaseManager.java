@@ -3,14 +3,11 @@ package com.fernandopaniagua.persistence;
 import com.fernandopaniagua.exceptions.ConnectionNotEnabledException;
 import com.fernandopaniagua.exceptions.DuplicateEmailException;
 import com.fernandopaniagua.exceptions.UnknownException;
-import com.fernandopaniagua.exceptions.UserNotFoundException;
 import com.fernandopaniagua.model.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DatabaseManager {
 

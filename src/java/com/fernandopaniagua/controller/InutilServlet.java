@@ -5,27 +5,20 @@
  */
 package com.fernandopaniagua.controller;
 
-import com.fernandopaniagua.exceptions.ConnectionNotEnabledException;
-import com.fernandopaniagua.exceptions.DuplicateEmailException;
-import com.fernandopaniagua.exceptions.UnknownException;
-import com.fernandopaniagua.model.User;
-import com.fernandopaniagua.model.UsersManager;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.simple.JSONObject;
 
 /**
  *
  * @author fernando.paniagua
  */
-public class CreadorUsuariosWS extends HttpServlet {
+@WebServlet(name = "InutilServlet", urlPatterns = {"/InutilServlet"})
+public class InutilServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,39 +31,19 @@ public class CreadorUsuariosWS extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Recogida de info
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String name = request.getParameter("name");
-        String surname = request.getParameter("surname");
-        String ip = request.getRemoteAddr();
-        //Llamada al business
-        User nuevoUser = new User(email, password, name, surname, ip);
-        UsersManager um = new UsersManager();
-        //Creamos el JSON
-        JSONObject jso = new JSONObject();
-        try {
-            um.addUser(nuevoUser);
-            jso.put("code", "0");
-            jso.put("mensaje", "El usuario se ha creado satisfactoriamente");
-            //0. Ha ido bien
-        } catch (ConnectionNotEnabledException ex) {
-            //-2. Base de datos no disponible
-            jso.put("code", "-2");
-            jso.put("mensaje", "La conexión con la base de datos no está disponible");
-        } catch (DuplicateEmailException ex) {
-            //-1. Clave duplicada
-            jso.put("code", "-1");
-            jso.put("mensaje", "La dirección de correo ya existe");
-        } catch (UnknownException ex) {
-            //-3. Error desconocido
-            jso.put("code", "-3");
-            jso.put("mensaje", "Ha ocurrido un error imprevisto");
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet InutilServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet InutilServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        //ESCRIBIMOS EL JSON EN EL STREAM DE SALIDA
-        response.setContentType("application/json;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        out.println(jso.toJSONString());
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
