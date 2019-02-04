@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CLIENTE AJAX - HTTP - JQUERY - JS</title>
+	<link rel="stylesheet" href="./css/estilo.css">
+	<script src="lib/jquery-3.3.1.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#bAccion").click(function(){
+				cargarURL();
+			});
+		});
+		function cargarURL(){
+			var _url = $("#url").val();
+			$.ajax({
+				async: true,
+				url: _url,
+				dataType: "json",
+				data:"",//id=pepito&email=pepito@gmail.com
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				method: "GET",
+				timeout: 5000,//Tiempo de espera máximo (ms)
+				success: function(data, textStatus, jqXHR){
+					//OK
+					console.log("OK");
+					procesar(data);
+				},
+				error: function(jqXHR, textStatus, errorThrown){
+					//ERROR
+					console.log("KO");
+				},
+				complete: function(jqXHR, textStatus){
+					//FINALIZADO
+					console.log("FINALIZADO:" + textStatus);
+				}
+			});
+		}
+		function procesar(data){
+			console.log(data);
+		}
+		
+	</script>
+</head>
+<body>
+	<H1 id="titulo"></H1>
+	<input type="text" size="100" id="url" placeholder="URL" value="http://localhost:8081/PSP_HOLAMUNDO/CreadorUsuariosWS?email=nuevo@gmail.com&password=12345&name=FERNANDO&surname=PANIAGUA">
+	<input type="button" id="bAccion" value="Cargar">
+	<div id="salida"></div>
+</body>
+</html>
